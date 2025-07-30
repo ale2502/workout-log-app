@@ -14,3 +14,15 @@ saveButton.addEventListener('click', () => {
   sets.push(set);
   console.log(sets);
 });
+
+repsInput.addEventListener('keydown', (e) => {
+  if (e.key === '.' || e.key === ',' || e.key === '-') {
+    e.preventDefault();
+  }
+});
+
+rirInput.addEventListener('keydown', (e) => {
+  if (e.key === ',' || e.key === '-') {
+    e.preventDefault();
+  }
+});

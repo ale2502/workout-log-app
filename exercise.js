@@ -24,6 +24,8 @@ decreaseRirButton.addEventListener('click', () => {
 const saveButton = document.getElementById('save-button');
 const clearButton = document.getElementById('clear-button');
 
+let setNumber = 0;
+
 saveButton.addEventListener('click', () => {
   const repsValue = repsInput.value;
   const isValidReps = Number.isInteger(Number(repsValue));
@@ -33,12 +35,16 @@ saveButton.addEventListener('click', () => {
     return;
   }
 
+  setNumber += 1;
+
   let set = {
+    set: setNumber,
     weight: parseFloat(weightInput.value),
     reps: parseInt(repsInput.value),
     rir: rir
   }
   sets.push(set);
+  renderSets();
   console.log(sets);
 
   resetInputs();
@@ -66,3 +72,17 @@ weightInput.addEventListener('keydown', (e) => {
     e.preventDefault();
   }
 });
+
+function renderSets() {
+  let setsTableHTML = '';
+
+  sets.forEach((set) => {
+    setsTableHTML += `
+      <div>${set.set}</div>
+      <div>${set.weight}</div>
+      <div>${set.reps}</div>
+      <div>${set.rir}</div>
+    `;
+  });
+  document.getElementById('sets-table').innerHTML = setsTableHTML;
+}

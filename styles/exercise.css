@@ -11,9 +11,26 @@ p {
 }
 
 .div-rir-input {
-  margin-bottom: 10px;
+  margin-bottom: 15px;
 }
 
 .rir-text {
   margin-bottom: 3px;
+}
+
+.div-save-clear-button {
+  margin-bottom: 15px;
+}
+
+.table-header {
+  display: flex;
+  justify-content: space-between;
+  width: 185px;
+  border-bottom: 1px solid black;
+}
+
+.sets-table {
+  display: flex;
+  justify-content: space-between;
+  width: 185px;
 }

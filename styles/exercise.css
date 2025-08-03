@@ -33,4 +33,11 @@ p {
   display: flex;
   justify-content: space-between;
   width: 185px;
+  border-bottom: 1px solid black;
+  padding: 3px 0px;
+}
+
+.sets-and-remove {
+  display: flex;
+  gap: 15px;
 }

@@ -39,15 +39,13 @@ saveButton.addEventListener('click', () => {
 
   let set = {
     set: setNumber,
-    weight: parseFloat(weightInput.value),
+    weight: parseFloat(weightInput.value).toFixed(1),
     reps: parseInt(repsInput.value),
-    rir: rir
+    rir: rir.toFixed(1)
   }
   sets.push(set);
   renderSets();
   console.log(sets);
-
-  resetInputs();
 });
 
 clearButton.addEventListener('click', () => {
@@ -73,15 +71,26 @@ weightInput.addEventListener('keydown', (e) => {
   }
 });
 
+function removeSet(index) {
+  
+}
+
 function renderSets() {
   let setsTableHTML = '';
 
   sets.forEach((set) => {
     setsTableHTML += `
-      <div>${set.set}</div>
-      <div>${set.weight}</div>
-      <div>${set.reps}</div>
-      <div>${set.rir}</div>
+      <div class="sets-and-remove">
+        <div class="sets-table">
+          <div>${set.set}</div>
+          <div>${set.weight}</div>
+          <div>${set.reps}</div>
+          <div>${set.rir}</div>
+        </div>
+        <div>
+          <button>Remove</button>
+        </div>
+      </div>
     `;
   });
   document.getElementById('sets-table').innerHTML = setsTableHTML;

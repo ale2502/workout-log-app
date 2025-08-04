@@ -71,14 +71,10 @@ weightInput.addEventListener('keydown', (e) => {
   }
 });
 
-function removeSet(index) {
-  
-}
-
 function renderSets() {
   let setsTableHTML = '';
 
-  sets.forEach((set) => {
+  sets.forEach((set, index) => {
     setsTableHTML += `
       <div class="sets-and-remove">
         <div class="sets-table">
@@ -88,10 +84,21 @@ function renderSets() {
           <div>${set.rir}</div>
         </div>
         <div>
-          <button>Remove</button>
+          <button class="remove-set-button" data-index="${index}">Remove</button>
         </div>
       </div>
     `;
   });
-  document.getElementById('sets-table').innerHTML = setsTableHTML;
+
+  const setsTable = document.getElementById('sets-table').innerHTML = setsTableHTML;
+
+  document.querySelectorAll('.remove-set-button').forEach(button => {
+    button.addEventListener('click', (e) => {
+      const index = e.target.getAttribute('data-index');
+      sets.splice(index, 1);
+      renderSets();
+    });
+  });
 }
+
+removeSet(setNumber);

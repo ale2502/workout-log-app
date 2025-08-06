@@ -15,8 +15,8 @@ export const exercises = [
   },
   {
     id: 3,
-    name: 'Pull Down',
-    muscleGroup: 'Back',
+    name: 'Barbell Squats',
+    muscleGroup: 'Quadriceps',
     type: 'weighted'
   },
   {

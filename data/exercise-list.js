@@ -60,5 +60,11 @@ export const exercises = [
     name: 'Barbell Overhead Press',
     muscleGroup: 'Shoulders',
     type: 'weighted'
+  },
+  {
+    id: 11,
+    name: 'Dumbbell Fly',
+    muscleGroup: 'Chest',
+    type: 'weighted'
   }
 ];

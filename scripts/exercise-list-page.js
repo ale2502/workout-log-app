@@ -12,12 +12,24 @@ function renderExercisesList() {
 
   filteredExercises.forEach((exercise) => {
     exercisesListHTML += `
-      <div>${exercise.name}</div>
+      <div class="div-exercise-button">
+        <button class="exercise-button"
+          data-exercise="${exercise.id}">
+          ${exercise.name}
+        </button>
+      </div>
     `;
   });
 
   const exerciseList = document.getElementById('exercise-list');
   exerciseList.innerHTML = exercisesListHTML;
+
+  const allExercisesButtons = document.querySelectorAll('.exercise-button');
+  allExercisesButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+
+    });
+  });
 }
 
 renderExercisesList();

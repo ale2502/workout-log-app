@@ -90,7 +90,8 @@ function renderSets() {
     `;
   });
 
-  const setsTable = document.getElementById('sets-table').innerHTML = setsTableHTML;
+  const setsTable = document.getElementById('sets-table');
+  setsTable.innerHTML = setsTableHTML;
 
   document.querySelectorAll('.remove-set-button').forEach(button => {
     button.addEventListener('click', (e) => {

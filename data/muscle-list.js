@@ -4,7 +4,7 @@ export const muscleGroups = [
   'Shoulders',
   'Biceps',
   'Triceps',
-  'Legs',
+  'Quadriceps',
   'Hamstrings',
   'Glutes',
   'Calves',

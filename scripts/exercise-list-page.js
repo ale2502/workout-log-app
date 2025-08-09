@@ -27,7 +27,9 @@ function renderExercisesList() {
   const allExercisesButtons = document.querySelectorAll('.exercise-button');
   allExercisesButtons.forEach((button) => {
     button.addEventListener('click', () => {
-
+      const selectedExerciseId = button.getAttribute('data-exercise');
+      localStorage.setItem('selectedExerciseId', selectedExerciseId); 
+      window.location.href = '../exercise.html';
     });
   });
 }

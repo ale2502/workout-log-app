@@ -1,3 +1,20 @@
+import { exercises } from "../data/exercise-list.js";
+
+function getChosenExercise() {
+  const chosenExerciseId = localStorage.getItem('selectedExerciseId');
+  const chosenExercise = '';
+
+  exercises.forEach((exercise) => {
+    if (chosenExerciseId === exercise.id) {
+      chosenExercise = exercise.name;
+    }
+  });
+
+  document.title = chosenExercise;
+}
+
+getChosenExercise();
+
 const sets = [];
 
 const weightInput = document.getElementById('js-weight-input');

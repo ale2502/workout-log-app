@@ -27,8 +27,10 @@ const increaseRirButton = document.getElementById('js-increase-rir');
 const decreaseRirButton = document.getElementById('js-decrease-rir');
 
 increaseRirButton.addEventListener('click', () => {
-  rir += 0.5;
-  rirDisplay.textContent = rir.toFixed(1);
+  if (rir < 10) {
+    rir += 0.5;
+    rirDisplay.textContent = rir.toFixed(1);
+  }
 });
 
 decreaseRirButton.addEventListener('click', () => {

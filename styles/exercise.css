@@ -25,19 +25,19 @@ p {
 .table-header {
   display: flex;
   justify-content: space-between;
-  width: 185px;
+  width: 216px;
   border-bottom: 1px solid black;
 }
 
 .sets-table {
   display: flex;
   justify-content: space-between;
-  width: 185px;
+  width: 216px;
   border-bottom: 1px solid black;
   padding: 3px 0px;
 }
 
 .sets-and-remove {
   display: flex;
-  gap: 15px;
+  gap: 10px;
 }

@@ -120,5 +120,3 @@ function renderSets() {
     });
   });
 }
-
-removeSet(setNumber);

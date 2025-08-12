@@ -78,6 +78,11 @@ function resetInputs() {
   rirDisplay.textContent = rir.toFixed(1);
 }
 
+function saveExerciseToCurrentWorkout() {
+  const selectedExerciseName = localStorage.getItem('selectedExerciseName');
+  const selectedExerciseId = localStorage.getItem('selectedExerciseId');
+}
+
 repsInput.addEventListener('keydown', (e) => {
   if (e.key === '.' || e.key === ',' || e.key === '-') {
     e.preventDefault();

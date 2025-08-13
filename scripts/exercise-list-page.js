@@ -30,7 +30,8 @@ function renderExercisesList() {
     button.addEventListener('click', () => {
       const selectedExerciseId = button.getAttribute('data-exercise');
       const selectedExerciseName = button.getAttribute('data-exercise-name');
-      localStorage.setItem('selectedExerciseId', selectedExerciseId); 
+      localStorage.setItem('selectedExerciseId', selectedExerciseId);
+      localStorage.setItem('selectedExerciseName', selectedExerciseName);
       window.location.href = '../exercise.html';
     });
   });

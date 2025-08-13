@@ -63,8 +63,11 @@ saveButton.addEventListener('click', () => {
     rir: rir.toFixed(1)
   }
   sets.push(set);
+  
+  saveExerciseToCurrentWorkout();
+
   renderSets();
-  console.log(sets);
+  //console.log(sets);
 });
 
 clearButton.addEventListener('click', () => {
@@ -81,6 +84,21 @@ function resetInputs() {
 function saveExerciseToCurrentWorkout() {
   const selectedExerciseName = localStorage.getItem('selectedExerciseName');
   const selectedExerciseId = localStorage.getItem('selectedExerciseId');
+
+  let currentWorkout = JSON.parse(localStorage.getItem('currentWorkout')) || [];
+
+  let existingExercise = currentWorkout.find((ex) => ex.exerciseId === selectedExerciseId);
+
+  if (existingExercise) {
+    existingExercise.sets = sets;
+  } else {
+    currentWorkout.push({
+      exerciseId: selectedExerciseId,
+      exerciseName: selectedExerciseName,
+      sets: sets
+    });
+  }
+  localStorage.setItem('currentWorkout', JSON.stringify(currentWorkout));
 }
 
 repsInput.addEventListener('keydown', (e) => {

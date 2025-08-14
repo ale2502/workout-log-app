@@ -99,6 +99,7 @@ function saveExerciseToCurrentWorkout() {
     });
   }
   localStorage.setItem('currentWorkout', JSON.stringify(currentWorkout));
+  console.log(currentWorkout);
 }
 
 repsInput.addEventListener('keydown', (e) => {

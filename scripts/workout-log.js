@@ -5,8 +5,10 @@ function renderWorkout() {
   
   workoutLog.forEach((exercise) => {
     workoutLogHTML += `
-      
+      <div>${exercise.exerciseName}</div>
+      <div>${exercise.sets}</div>
     `;
   });
+  document.getElementById('exercises-and-sets').innerHTML = workoutLogHTML;
 }
 renderWorkout();

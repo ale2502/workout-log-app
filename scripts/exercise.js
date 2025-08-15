@@ -1,16 +1,15 @@
 import { exercises } from "../data/exercise-list.js";
 
 function getChosenExercise() {
-  const chosenExerciseId = localStorage.getItem('selectedExerciseId');
-  const chosenExercise = '';
+  const chosenExerciseId = Number(localStorage.getItem('selectedExerciseId'));
+  let chosenExercise = '';
 
   exercises.forEach((exercise) => {
     if (chosenExerciseId === exercise.id) {
       chosenExercise = exercise.name;
     }
   });
-
-  document.title = chosenExercise;
+  document.getElementById('exercise-title').innerHTML = chosenExercise;
 }
 
 getChosenExercise();

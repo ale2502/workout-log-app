@@ -1,3 +1,7 @@
 .each-exercise-and-sets {
-  margin-bottom: ;
+  border-style: solid;
+  border-width: 1px;
+  width: 230px;
+  margin-bottom: 10px;
+  padding: 5px;
 }

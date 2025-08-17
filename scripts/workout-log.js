@@ -6,11 +6,17 @@ function renderWorkout() {
   workoutLog.forEach((exercise) => {
     let workoutLogHTML = '';
     workoutLogHTML += `
-      <div class="sets-reps">${exercise.exerciseName}</div>
+      <div class="sets-reps">
+        ${exercise.exerciseName}
+        <span>
+          <button>Edit</button>
+          <button>Delete</button>
+        </span>
+      </div>
     `;
     exercise.sets.forEach((set) => {
       workoutLogHTML += `
-        <div class="sets-reps">Set ${set.set}: ${set.weight}kg x ${set.reps} reps (RIR: ${set.rir})</div>
+        <div>Set ${set.set}: ${set.weight}kg x ${set.reps} reps (RIR: ${set.rir})</div>
       `;
     });
     workoutLogHTMLWrap += `<div class="each-exercise-and-sets">${workoutLogHTML}</div>`;

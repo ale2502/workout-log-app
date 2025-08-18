@@ -10,7 +10,7 @@ function renderWorkout() {
         ${exercise.exerciseName}
         <span>
           <button>Edit</button>
-          <button>Delete</button>
+          <button id="delete-exercise" data-exercise-id="${exercise.selectedExerciseId}">Delete</button>
         </span>
       </div>
     `;
@@ -23,5 +23,11 @@ function renderWorkout() {
   });
   console.log(workoutLogHTMLWrap);
   document.getElementById('exercises-and-sets').innerHTML = workoutLogHTMLWrap;
+
+  document.querySelectorAll('delete-exercise').forEach((button) => {
+    button.addEventListener('click', (e) => {
+      
+    });
+  });
 }
 renderWorkout();

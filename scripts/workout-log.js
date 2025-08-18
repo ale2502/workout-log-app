@@ -10,7 +10,7 @@ function renderWorkout() {
         ${exercise.exerciseName}
         <span>
           <button>Edit</button>
-          <button id="delete-exercise" data-exercise-id="${exercise.selectedExerciseId}">Delete</button>
+          <button class="delete-exercise" data-exercise-id="${exercise.exerciseId}">Delete</button>
         </span>
       </div>
     `;
@@ -24,9 +24,17 @@ function renderWorkout() {
   console.log(workoutLogHTMLWrap);
   document.getElementById('exercises-and-sets').innerHTML = workoutLogHTMLWrap;
 
-  document.querySelectorAll('delete-exercise').forEach((button) => {
+  document.querySelectorAll('.delete-exercise').forEach((button) => {
     button.addEventListener('click', (e) => {
+      const exerciseId = e.target.getAttribute('data-exercise-id');
       
+      let currentWorkout = JSON.parse(localStorage.getItem('currentWorkout')) || [];
+
+      currentWorkout = currentWorkout.filter(ex => ex.exerciseId !== exerciseId);
+
+      localStorage.setItem('currentWorkout', JSON.stringify(currentWorkout));
+
+      renderWorkout();
     });
   });
 }

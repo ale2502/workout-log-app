@@ -9,7 +9,7 @@ function renderWorkout() {
       <div class="sets-reps">
         ${exercise.exerciseName}
         <span>
-          <button>Edit</button>
+          <button class="edit-exercise" data-exercise-id="${exercise.exerciseId}">Edit</button>
           <button class="delete-exercise" data-exercise-id="${exercise.exerciseId}">Delete</button>
         </span>
       </div>
@@ -35,6 +35,12 @@ function renderWorkout() {
       localStorage.setItem('currentWorkout', JSON.stringify(currentWorkout));
 
       renderWorkout();
+    });
+  });
+
+  document.querySelectorAll('.edit-exercise').forEach((button) => {
+    button.addEventListener('click', (e) => {
+      
     });
   });
 }

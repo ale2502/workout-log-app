@@ -1,5 +1,12 @@
 import { exercises } from "../data/exercise-list.js";
 
+function loadExistingExercise() {
+  const selectedExerciseId = localStorage.getItem('selectedExerciseId');
+  const selectedExerciseName = localStorage.getItem('selectedExerciseName');
+  
+  const currentWorkout = JSON.parse()
+}
+
 function getChosenExercise() {
   const chosenExerciseId = Number(localStorage.getItem('selectedExerciseId'));
   let chosenExercise = '';
@@ -11,7 +18,6 @@ function getChosenExercise() {
   });
   document.getElementById('exercise-title').innerHTML = chosenExercise;
 }
-
 getChosenExercise();
 
 const sets = [];

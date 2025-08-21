@@ -57,7 +57,7 @@ export const exercises = [
   },
   {
     id: 10,
-    name: 'Barbell Overhead Press',
+    name: 'Dumbell Lateral Raise',
     muscleGroup: 'Shoulders',
     type: 'weighted'
   },

@@ -1,12 +1,5 @@
 import { exercises } from "../data/exercise-list.js";
 
-function loadExistingExercise() {
-  const selectedExerciseId = localStorage.getItem('selectedExerciseId');
-  const selectedExerciseName = localStorage.getItem('selectedExerciseName');
-  
-  const currentWorkout = JSON.parse()
-}
-
 function getChosenExercise() {
   const chosenExerciseId = Number(localStorage.getItem('selectedExerciseId'));
   let chosenExercise = '';
@@ -21,6 +14,20 @@ function getChosenExercise() {
 getChosenExercise();
 
 const sets = [];
+
+function loadExistingExercise() {
+  const selectedExerciseId = localStorage.getItem('selectedExerciseId');
+  
+  const currentWorkout = JSON.parse(localStorage.getItem('currentWorkout')) || [];
+  const existingExercise = currentWorkout.find(ex => ex.exerciseId === selectedExerciseId);
+
+  if (existingExercise) {
+    sets.splice(0, sets.length, ...existingExercise.sets);
+    renderSets();
+  }
+}
+
+loadExistingExercise();
 
 const weightInput = document.getElementById('js-weight-input');
 const repsInput = document.getElementById('js-reps-input');
@@ -47,6 +54,7 @@ decreaseRirButton.addEventListener('click', () => {
 
 const saveButton = document.getElementById('save-button');
 const clearButton = document.getElementById('clear-button');
+const currentWorkoutButton = document.getElementById('current-workout-button');
 
 let setNumber = 0;
 
@@ -77,6 +85,10 @@ saveButton.addEventListener('click', () => {
 
 clearButton.addEventListener('click', () => {
   resetInputs();
+});
+
+currentWorkoutButton.addEventListener('click', () => {
+  window.location.href = '../workout-log.html';
 });
 
 function resetInputs() {
@@ -133,6 +145,7 @@ function renderSets() {
         </div>
         <div>
           <button class="remove-set-button" data-index="${index}">Remove</button>
+          <button>Edit</button>
         </div>
       </div>
     `;

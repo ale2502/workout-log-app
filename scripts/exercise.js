@@ -145,7 +145,7 @@ function renderSets() {
         </div>
         <div>
           <button class="remove-set-button" data-index="${index}">Remove</button>
-          <button>Edit</button>
+          <button class="edit-set-button" data-index="${index}">Edit</button>
         </div>
       </div>
     `;
@@ -159,6 +159,16 @@ function renderSets() {
       const index = e.target.getAttribute('data-index');
       sets.splice(index, 1);
       renderSets();
+      saveExerciseToCurrentWorkout();
     });
   });
+
+  /*
+  document.querySelectorAll('.edit-set-button').forEach(button => {
+    button.addEventListener('click', (e) => {
+      const index = e.target.getAttribute('data-index');
+      weightInput.value = sets[index]
+    });
+  });
+  */
 }

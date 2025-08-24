@@ -158,8 +158,8 @@ function renderSets() {
     button.addEventListener('click', (e) => {
       const index = e.target.getAttribute('data-index');
       sets.splice(index, 1);
-      renderSets();
       saveExerciseToCurrentWorkout();
+      renderSets();
     });
   });
 

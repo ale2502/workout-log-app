@@ -1,5 +1,17 @@
 import { exercises } from "../data/exercise-list.js";
 
+function buttonBackSpecificMuscleGroup() {
+  const topButtons = document.getElementById('js-specific-muscle-button');
+  const selectedGroup = localStorage.getItem('selectedMuscleGroup');
+  
+  topButtons.innerHTML = 
+  `
+    <button>Back to ${selectedGroup} exercises</button>
+  `;
+}
+
+buttonBackSpecificMuscleGroup();
+
 function getChosenExercise() {
   const chosenExerciseId = Number(localStorage.getItem('selectedExerciseId'));
   let chosenExercise = '';

@@ -1,16 +1,28 @@
 import { exercises } from "../data/exercise-list.js";
 
 function buttonBackSpecificMuscleGroup() {
-  const topButtons = document.getElementById('js-specific-muscle-button');
+  const topButtonContainer = document.getElementById('js-specific-muscle-button-container');
   const selectedGroup = localStorage.getItem('selectedMuscleGroup');
   
-  topButtons.innerHTML = 
+  topButtonContainer.innerHTML = 
   `
-    <button>Back to ${selectedGroup} exercises</button>
+    <button id="back-to-specific-muscle-button">Back to ${selectedGroup} exercises</button>
   `;
+  
+  const backToSpecificMuscleButton = document.getElementById('back-to-specific-muscle-button');
+  backToSpecificMuscleButton.addEventListener('click', () => {
+    localStorage.setItem('selectedMuscleGroup', selectedGroup);
+    window.location.href = '../exercise-list-page.html';
+  });
+
 }
 
 buttonBackSpecificMuscleGroup();
+
+const allMuscleButton = document.getElementById('back-to-all-muscle-button');
+allMuscleButton.addEventListener('click', () => {
+  window.location.href = '../muscle-list-page.html';
+});
 
 function getChosenExercise() {
   const chosenExerciseId = Number(localStorage.getItem('selectedExerciseId'));

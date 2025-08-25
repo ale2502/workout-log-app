@@ -1,6 +1,6 @@
 import { exercises } from "../data/exercise-list.js";
 
-function renderExercisesList() {
+export function renderExercisesList() {
   const selectedGroup = localStorage.getItem('selectedMuscleGroup');
   
   let filteredExercises = exercises;

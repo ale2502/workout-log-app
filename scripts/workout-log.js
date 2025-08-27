@@ -1,4 +1,4 @@
-export function renderWorkout() {
+function renderWorkout() {
   let workoutLogHTMLWrap = '';
   
   const workoutLog = JSON.parse(localStorage.getItem('currentWorkout')) || [];

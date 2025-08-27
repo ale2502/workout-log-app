@@ -35,6 +35,7 @@ function getChosenExercise() {
   });
   document.getElementById('exercise-title').innerHTML = chosenExercise;
 }
+
 getChosenExercise();
 
 const sets = [];
@@ -162,7 +163,7 @@ function renderSets() {
     setsTableHTML += `
       <div class="sets-and-remove">
         <div class="sets-table">
-          <div>${set.set}</div>
+          <div>${index + 1}</div>
           <div>${set.weight}</div>
           <div>${set.reps}</div>
           <div>${set.rir}</div>
@@ -187,12 +188,16 @@ function renderSets() {
     });
   });
 
-  /*
+  
   document.querySelectorAll('.edit-set-button').forEach(button => {
     button.addEventListener('click', (e) => {
       const index = e.target.getAttribute('data-index');
-      weightInput.value = sets[index]
+      
+      weightInput.value = sets[index].weight;
+      repsInput.value = sets[index].reps;
+      rirDisplay.textContent = sets[index].rir;
+      
     });
   });
-  */
+  
 }

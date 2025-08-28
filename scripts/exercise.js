@@ -195,9 +195,9 @@ function renderSets() {
       
       weightInput.value = sets[index].weight;
       repsInput.value = sets[index].reps;
+      rir = 
       rirDisplay.textContent = sets[index].rir;
       
     });
   });
-  
 }

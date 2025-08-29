@@ -81,7 +81,7 @@ const saveButton = document.getElementById('save-button');
 const clearButton = document.getElementById('clear-button');
 const currentWorkoutButton = document.getElementById('current-workout-button');
 
-let setNumber = 0;
+let editIndex = null;
 
 saveButton.addEventListener('click', () => {
   const repsValue = repsInput.value;
@@ -92,18 +92,20 @@ saveButton.addEventListener('click', () => {
     return;
   }
 
-  setNumber += 1;
-
   let set = {
-    set: setNumber,
     weight: parseFloat(weightInput.value).toFixed(1),
     reps: parseInt(repsInput.value),
     rir: rir.toFixed(1)
   }
-  sets.push(set);
+
+  if (editIndex !== null) {
+    sets[editIndex] = set;
+    editIndex = null;
+  } else {
+    sets.push(set);
+  }
   
   saveExerciseToCurrentWorkout();
-
   renderSets();
   //console.log(sets);
 });
@@ -191,13 +193,12 @@ function renderSets() {
   
   document.querySelectorAll('.edit-set-button').forEach(button => {
     button.addEventListener('click', (e) => {
-      const index = e.target.getAttribute('data-index');
+      editIndex = e.target.getAttribute('data-index');
       
-      weightInput.value = sets[index].weight;
-      repsInput.value = sets[index].reps;
-      rir = 
-      rirDisplay.textContent = sets[index].rir;
-      
+      weightInput.value = sets[editIndex].weight;
+      repsInput.value = sets[editIndex].reps;
+      rir = parseFloat(sets[editIndex].rir)
+      rirDisplay.textContent = rir.toFixed(1);
     });
   });
 }

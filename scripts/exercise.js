@@ -197,6 +197,7 @@ function renderSets() {
       
       weightInput.value = sets[editIndex].weight;
       repsInput.value = sets[editIndex].reps;
+      // Before, it was rirDisplay.textContent = sets[index].rir; meaning that only DOM was being editing, but no RIR.
       rir = parseFloat(sets[editIndex].rir)
       rirDisplay.textContent = rir.toFixed(1);
     });

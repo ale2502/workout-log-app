@@ -19,9 +19,9 @@ function renderWorkout() {
         </span>
       </div>
     `;
-    exercise.sets.forEach((set) => {
+    exercise.sets.forEach((set, index) => {
       workoutLogHTML += `
-        <div>Set ${set.set}: ${set.weight}kg x ${set.reps} reps (RIR: ${set.rir})</div>
+        <div>Set ${index + 1}: ${set.weight}kg x ${set.reps} reps (RIR: ${set.rir})</div>
       `;
     });
     workoutLogHTMLWrap += `<div class="each-exercise-and-sets">${workoutLogHTML}</div>`;

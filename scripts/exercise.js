@@ -93,9 +93,9 @@ saveButton.addEventListener('click', () => {
   }
 
   let set = {
-    weight: parseFloat(weightInput.value).toFixed(1),
+    weight: parseFloat(weightInput.value),
     reps: parseInt(repsInput.value),
-    rir: rir.toFixed(1)
+    rir: parseFloat(rir)
   }
 
   if (editIndex !== null) {
@@ -128,6 +128,7 @@ function resetInputs() {
 function saveExerciseToCurrentWorkout() {
   const selectedExerciseName = localStorage.getItem('selectedExerciseName');
   const selectedExerciseId = localStorage.getItem('selectedExerciseId');
+  const selectedMuscleGroup = localStorage.getItem('selectedMuscleGroup');
 
   let currentWorkout = JSON.parse(localStorage.getItem('currentWorkout')) || [];
 
@@ -138,6 +139,7 @@ function saveExerciseToCurrentWorkout() {
   } else {
     currentWorkout.push({
       exerciseId: selectedExerciseId,
+      muscleGroup: selectedMuscleGroup,
       exerciseName: selectedExerciseName,
       sets: sets
     });
@@ -166,7 +168,7 @@ function renderSets() {
       <div class="sets-and-remove">
         <div class="sets-table">
           <div>${index + 1}</div>
-          <div>${set.weight}</div>
+          <div>${set.weight.toFixed(1)}</div>
           <div>${set.reps}</div>
           <div>${set.rir}</div>
         </div>

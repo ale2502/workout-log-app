@@ -29,3 +29,10 @@ function renderMuscleGroups() {
 }
 
 renderMuscleGroups();
+
+function addNewMuscleGroup() {
+  const addNewMuscleGroupButton = document.getElementById('js-add-new-muscle-group');
+  addNewMuscleGroupButton.addEventListener('click', () => {
+    
+  });
+}

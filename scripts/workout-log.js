@@ -56,7 +56,7 @@ function renderWorkout() {
 }
 renderWorkout();
 
-const addNewExerciseButton = document.getElementById('js-add-new-exercise');
+const addNewExistingExerciseButton = document.getElementById('js-add-new-exercise');
 addNewExerciseButton.addEventListener('click', () => {
   window.location.href = '../muscle-list-page.html';
 });

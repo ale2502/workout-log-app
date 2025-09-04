@@ -33,6 +33,6 @@ renderMuscleGroups();
 function addNewMuscleGroup() {
   const addNewMuscleGroupButton = document.getElementById('js-add-new-muscle-group');
   addNewMuscleGroupButton.addEventListener('click', () => {
-    
+    //Chat gpt suggested to use localStorage, but I should learn how to use backend/api
   });
 }

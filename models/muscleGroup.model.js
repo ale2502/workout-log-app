@@ -1,11 +1,16 @@
 const mongoose = require('mongoose');
 
-const muscleGroupSchema = new mongoose.Schema({
-  name: {
-    type: String,
-    required: true,
-    unique: true
+const muscleGroupSchema = new mongoose.Schema(
+  {
+    name: {
+      type: String,
+      required: true,
+      unique: true
+    }
+  },
+  {
+    timestamps: true
   }
-});
+);
 
 module.exports = mongoose.model('MuscleGroup', muscleGroupSchema);

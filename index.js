@@ -3,10 +3,11 @@ const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const Workout = require('./models/workout.model');
 
-
 dotenv.config();
 
+// middleware
 const app = express();
+app.use(express.json());
 
 app.get('/', (req, res) => {
   res.send('Hello from Node API');

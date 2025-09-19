@@ -29,7 +29,7 @@ app.post('/api/exercises', async (req, res) => {
   }
 });
 
-// Getting/showing the existing exercises
+// Getting/showing existing exercises
 app.get('/api/exercises', async (req, res) => {
   try {
     const exercises = await Exercise.find().sort({ createdAt: -1 });
@@ -57,6 +57,16 @@ app.post('/api/workouts', async (req, res) => {
   }
 });
 
+// Getting/showing existing workouts
+app.get('/api/workouts', async (req, res) => {
+  try {
+    const workouts = await Workout.find().sort({ date: -1 });
+    return res.json(workouts);
+  } catch (err) {
+    console.error(err);
+    return res.status(500).json({ error: 'Something went wrong' });
+  }
+});
 
 
 

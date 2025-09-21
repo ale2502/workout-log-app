@@ -60,3 +60,60 @@ const addNewExistingExerciseButton = document.getElementById('js-add-new-exercis
 addNewExistingExerciseButton.addEventListener('click', () => {
   window.location.href = '../muscle-list-page.html';
 });
+
+async function saveWorkoutToDB() {
+  try {
+    const localWorkout = JSON.parse(localStorage.getItem('currentWorkout')) || [];
+
+    // 1) Get all exercises from API to map names => _id
+    const res = await fetch('http://localhost:3000/api/exercises');
+    const allExercises = await res.json();
+    const nameToId = new Map(allExercises.map(e => [e.name, e._id]));
+
+    // 2) Build API payload using Mongo _id
+    const payload = {
+      exercises: localWorkout.map(ex => ({
+        exerciseId: nameToId.get(ex.exerciseName),
+        sets: ex.sets.map(s => ({
+          weight: s.weight,
+          reps: s.reps,
+          rir: s.rir
+        }))
+      }))
+    };
+    
+    // Optional: basic validation (ensure we found ids)
+    const missing = payload.exercises.filter(e => !e.exerciseId);
+    if (missing.length > 0) {
+      alert('Some exercises do not exist in the database yet. Create them first in the API (POST /api/exercises).');
+      return;
+    }
+
+    // POST workout to API
+    const postRes = await fetch('http://localhost:3000/api/workouts', {
+      method: 'POST',
+      header: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+
+    if (!postRes.ok) {
+      const err = await postRes.json().catch(() => ({}));
+      console.error('Save failed:', err);
+      alert('Failed to save workout.');
+      return;
+    }
+
+    const saved = await postRes.json();
+    console.log('Saved workout:', saved);
+    alert('Workout saved!');
+
+  } catch (e) {
+    console.error(e);
+    alert('Unexpected error saving workout.');
+  }
+}
+
+const saveWorkoutBtn = document.getElementById('js-save-workout');
+if (saveWorkoutBtn) {
+  saveWorkoutBtn.addEventListener('click', saveWorkoutToDB);
+}

@@ -1,3 +1,4 @@
+const cors = require('cors');
 const express = require('express');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
@@ -8,6 +9,7 @@ dotenv.config();
 
 // middleware
 const app = express();
+app.use(cors());
 app.use(express.json());
 
 app.get('/', (req, res) => {
@@ -43,7 +45,7 @@ app.get('/api/exercises', async (req, res) => {
 // Creating/adding a new workout
 app.post('/api/workouts', async (req, res) => {
   try {
-    const { date, exercises } = req.body;
+    const { date, exercises } = req.body || {};
     const workoutData = {
       date: date ? new Date(date) : new Date(),
       exercises: exercises || []
@@ -60,7 +62,20 @@ app.post('/api/workouts', async (req, res) => {
 // Getting/showing existing workouts
 app.get('/api/workouts', async (req, res) => {
   try {
-    const workouts = await Workout.find().sort({ date: -1 });
+    const { date } = req.query;
+
+    const query = {};
+    if (date) {
+      const start = new Date(date);
+      start.setHours(0, 0, 0, 0);
+      const end = new Date(date);
+      end.setHours(23, 59, 59, 999);
+      query.date = { $gte: start, $lte: end };
+    }
+    
+    const workouts = await Workout.find(query)
+      .sort({ date: -1 })
+      .populate('exercises.exerciseId', 'name');
     return res.json(workouts);
   } catch (err) {
     console.error(err);

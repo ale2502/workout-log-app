@@ -66,5 +66,11 @@ export const exercises = [
     name: 'Dumbbell Fly',
     muscleGroup: 'Chest',
     type: 'weighted'
+  },
+  {
+    id: 12,
+    name: 'Bench Press',
+    muscleGroup: 'Chest',
+    type: 'weighted'
   }
 ];

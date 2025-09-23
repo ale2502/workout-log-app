@@ -92,7 +92,7 @@ async function saveWorkoutToDB() {
     // POST workout to API
     const postRes = await fetch('http://localhost:3000/api/workouts', {
       method: 'POST',
-      header: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload)
     });
 
@@ -116,4 +116,22 @@ async function saveWorkoutToDB() {
 const saveWorkoutBtn = document.getElementById('js-save-workout');
 if (saveWorkoutBtn) {
   saveWorkoutBtn.addEventListener('click', saveWorkoutToDB);
+}
+
+async function loadSavedWorkoutsByDate(dateStr) {
+  try {
+    const url = dateStr 
+      ? `http://localhost:3000/api/workouts?date=${encodeURIComponent(dateStr)}`
+      : 'http://localhost:3000/api/workouts';
+  
+    const res = await fetch(url);
+    const workouts = await res.json();
+
+    const container = document.getElementById('js-history-results');
+    let html = '';
+
+    workouts.forEach((w) => {
+      
+    });
+  }
 }

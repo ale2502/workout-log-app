@@ -131,7 +131,33 @@ async function loadSavedWorkoutsByDate(dateStr) {
     let html = '';
 
     workouts.forEach((w) => {
-      
+      const dateLabel = new Date(w.date).toLocaleDateString();
+      let block = `<div class="each-exercise-and-sets"><div><strong>${dateLabel}</strong></div>`;
+
+      w.exercises.forEach((e) => {
+        const name = e.exerciseId?.name || '(unknown exercise)';
+        block += `<div class="sets-reps">${name}</div>`;
+        e.sets.forEach((s, i) => {
+          block += `<div>Set ${i + 1}: ${s.weight}kg x ${s.reps} (RIR: ${s.rir})</div>`;
+        });
+      });
+
+      block += `</div>`;
+      html += block;
     });
+
+    container.innerHTML = html || '<div>No workouts for this date.</div>';
+  } catch (err) {
+    console.error(err);
+    alert('Failed to load history');
   }
+}
+
+// Wire button
+const historyBtn = document.getElementById('js-load-history');
+if (historyBtn) {
+  historyBtn.addEventListener('click', () => {
+    const input = document.getElementById('js-history-date');
+    const dateStr = input?.value;
+  });
 }

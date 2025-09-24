@@ -161,5 +161,3 @@ if (historyBtn) {
     const dateStr = input?.value;
   });
 }
-
-// test

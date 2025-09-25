@@ -131,7 +131,7 @@ async function loadSavedWorkoutsByDate(dateStr) {
     let html = '';
 
     workouts.forEach((w) => {
-      const dateLabel = new Date(w.date).toLocaleDateString();
+      const dateLabel = new Date(w.date).toLocaleDateString(undefined, { timeZone: 'UTC' });
       let block = `<div class="each-exercise-and-sets"><div><strong>${dateLabel}</strong></div>`;
 
       w.exercises.forEach((e) => {
@@ -158,6 +158,7 @@ const historyBtn = document.getElementById('js-load-history');
 if (historyBtn) {
   historyBtn.addEventListener('click', () => {
     const input = document.getElementById('js-history-date');
-    const dateStr = input?.value;
+    const dateStr = input && input.value ? input.value : undefined;
+    loadSavedWorkoutsByDate(dateStr);
   });
 }

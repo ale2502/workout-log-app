@@ -1,0 +1,18 @@
+project_name: Workout Log App
+
+app context: 
+  - A system to track workouts with exercises, sets, load (if it's the case), reps, reps in reserve, etc.
+  - There will be a calendar so the user can pick a data and retrieve previous workouts and edit them eventually.
+
+learning context:
+  - I'm learning how to code, so everything needs to be explained step by step.
+  - Beginner-friendly guidance; no automatic edits unless I say so.
+  - It's very likely that I'll ask you to explain some lines with more details.
+  - I need the best approach as possible for me to learn the best way.
+  - Use the most modern approach to solve problems, unless they would be too advanced for me.
+  - I want you to give me the code alongside with some explanation, like you were doing before.
+
+stack:
+  - For now we'll be using JS, HTML, CSS, Node.js;
+  - Later when i'll be a bit more profecient, I want to include React, deployment on Vercel, deployment on AWS and Azure.
+  - For the branch called "all-goes-DB", sets and workouts are saved in localStorage and then there's a button to push it to MongoDB (in future branches I want to do the same with Postgres so I can learn the most popular DBs).

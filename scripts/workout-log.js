@@ -87,9 +87,17 @@ async function saveWorkoutToDB() {
         nameToId.set(exercise.exerciseName, created._id);
       }
     }
+
+    const dateInput = document.getElementById('js-history-date');
+    // If the input doesn't existe or has no value, it's falsy
+    const day = (dateInput && dateInput.value)
+      ? dateInput.value
+      // new Date -> current date and time; .toISOString() -> formats it as "2025-09-25T13:30:00.000Z"; .slice(0, 10) -> takes the first 10 characters.
+      : new Date().toISOString().slice(0, 10);
     
     // Build API payload using Mongo _id
     const payload = {
+      date: day,
       exercises: localWorkout.map(ex => ({
         exerciseId: nameToId.get(ex.exerciseName),
         sets: ex.sets.map(s => ({
@@ -123,8 +131,11 @@ async function saveWorkoutToDB() {
     }
 
     const saved = await postRes.json();
+    localStorage.removeItem('currentWorkout');
+    renderWorkout();
+    await loadSavedWorkoutsByDate(day);
     console.log('Saved workout:', saved);
-    alert('Workout saved!');
+    alert('Workout saved and loaded from history');
 
   } catch (e) {
     console.error(e);
@@ -151,11 +162,11 @@ async function loadSavedWorkoutsByDate(dateStr) {
 
     workouts.forEach((w) => {
       const dateLabel = new Date(w.date).toLocaleDateString(undefined, { timeZone: 'UTC' });
-      let block = `<div class="each-exercise-and-sets"><div><strong>${dateLabel}</strong></div>`;
+      let block = `<div class="previous-workout-from-db"><div class="workout-date"><strong>${dateLabel}</strong></div>`;
 
       w.exercises.forEach((e) => {
         const name = e.exerciseId?.name || '(unknown exercise)';
-        block += `<div class="sets-reps">${name}</div>`;
+        block += `<div class="exercise-name">${name}</div>`;
         e.sets.forEach((s, i) => {
           block += `<div>Set ${i + 1}: ${s.weight}kg x ${s.reps} (RIR: ${s.rir})</div>`;
         });

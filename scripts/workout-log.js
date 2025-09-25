@@ -82,11 +82,22 @@ async function saveWorkoutToDB() {
       }))
     };
     
-    // Optional: basic validation (ensure we found ids)
-    const missing = payload.exercises.filter(e => !e.exerciseId);
-    if (missing.length > 0) {
-      alert('Some exercises do not exist in the database yet. Create them first in the API (POST /api/exercises).');
-      return;
+    // It's similar to a forEach or a for loop, but forEach doesn't accept async await functions and for loop would make it more difficult to read
+    for (const exercise of localWorkout) {
+      if(!nameToId.get(exercise.exerciseName)) {
+        // Create the missing exercise
+        const newExercise = await fetch('http://localhost:3000/api/exercises', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            name: exercise.exerciseName,
+            muscleGroup: exercise.muscleGroup,
+            type: 'weighted'
+          })
+        });
+        const created = await newExercise.json();
+        nameToId.set(exercise.exerciseName, created._id);
+      }
     }
 
     // POST workout to API

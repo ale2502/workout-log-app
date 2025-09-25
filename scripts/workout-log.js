@@ -65,23 +65,11 @@ async function saveWorkoutToDB() {
   try {
     const localWorkout = JSON.parse(localStorage.getItem('currentWorkout')) || [];
 
-    // 1) Get all exercises from API to map names => _id
+    // Get all exercises from API to map names => _id
     const res = await fetch('http://localhost:3000/api/exercises');
     const allExercises = await res.json();
     const nameToId = new Map(allExercises.map(e => [e.name, e._id]));
 
-    // 2) Build API payload using Mongo _id
-    const payload = {
-      exercises: localWorkout.map(ex => ({
-        exerciseId: nameToId.get(ex.exerciseName),
-        sets: ex.sets.map(s => ({
-          weight: s.weight,
-          reps: s.reps,
-          rir: s.rir
-        }))
-      }))
-    };
-    
     // It's similar to a forEach or a for loop, but forEach doesn't accept async await functions and for loop would make it more difficult to read
     for (const exercise of localWorkout) {
       if(!nameToId.get(exercise.exerciseName)) {
@@ -99,6 +87,26 @@ async function saveWorkoutToDB() {
         nameToId.set(exercise.exerciseName, created._id);
       }
     }
+    
+    // Build API payload using Mongo _id
+    const payload = {
+      exercises: localWorkout.map(ex => ({
+        exerciseId: nameToId.get(ex.exerciseName),
+        sets: ex.sets.map(s => ({
+          weight: s.weight,
+          reps: s.reps,
+          rir: s.rir
+        }))
+      }))
+    };
+
+    const missing = payload.exercises.filter(e => !e.exerciseId);
+    if (missing.length) {
+      alert('Some exercises still missing IDs'); 
+      return;
+    }
+
+    console.log(payload);
 
     // POST workout to API
     const postRes = await fetch('http://localhost:3000/api/workouts', {

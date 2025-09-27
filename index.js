@@ -94,4 +94,3 @@ mongoose.connect(`mongodb+srv://${process.env.MONGODB_USERNAME}:${process.env.MO
   console.log('Connection failed');
 });
 
-// test

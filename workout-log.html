@@ -2,12 +2,15 @@
 <html lang="en">
   <head>
     <title>Workout Log</title>
-    <link rel="stylesheet" href="/styles/workout-log.css">
+    <link rel="stylesheet" href="styles/workout-log.css">
   </head>
   <body>
     <h3>Workout</h3>
     <h4 id="js-current-date" class="current-date"></h4>
-    <button id="js-add-new-exercise" class="add-new-exercise">Add new exercise</button>
+    <div class="actions">
+      <button id="js-workouts-history-button">Workouts history</button>
+      <button id="js-add-new-exercise" class="add-new-exercise">Add new exercise</button>
+    </div>
     <div id="exercises-and-sets"></div>
     <script type="module" src="/scripts/workout-log.js"></script>
   </body>

@@ -1,4 +1,4 @@
-import { months, daysOfTheWeek } from "./lists.js";
+import { displayCurrentDate } from "./date-utils.js";
 
 function renderWorkout() {
   let workoutLogHTMLWrap = '';
@@ -63,29 +63,5 @@ addNewExistingExerciseButton.addEventListener('click', () => {
   window.location.href = '../muscle-list-page.html';
 });
 
-function displayCurrentDate() {
-  const now = new Date();
-  const day = String(now.getDate());
-  let ordinalIndicator = '';
-
-  if (day === '1') {
-    ordinalIndicator = 'st'; 
-  } else if (day === '2') {
-    ordinalIndicator = 'nd';
-  } else if (day === '3') {
-    ordinalIndicator = 'rd';
-  } else {
-    ordinalIndicator = 'th';
-  }
-
-  const weekDay = daysOfTheWeek[now.getDay()];
-  const month = months[now.getMonth()];
-  const year = String(now.getFullYear());
-  
-  const dateString = `${weekDay}, ${month} ${day}${ordinalIndicator}, ${year}`;
-  
-  const currentDateContainer = document.getElementById('js-current-date');
-  currentDateContainer.textContent = dateString;
-}
-
-displayCurrentDate();
+const currentDateContainer = document.getElementById('js-current-date');
+currentDateContainer.textContent = displayCurrentDate();

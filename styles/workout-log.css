@@ -22,3 +22,7 @@
   align-items: flex-start;
   gap: 10px;
 }
+
+.exercise-date {
+  margin-bottom: 10px;
+}

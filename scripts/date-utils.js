@@ -36,5 +36,3 @@ export function displayShortCurrentDate() {
   const shortDateString = `${day}/${month}/${year}`;
   return shortDateString;
 }
-
-displayShortCurrentDate();

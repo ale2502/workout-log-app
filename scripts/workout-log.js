@@ -20,6 +20,7 @@ function renderWorkout() {
           </button>
         </span>
       </div>
+      <div class="exercise-date">${exercise.exerciseDate}</div>
     `;
     exercise.sets.forEach((set, index) => {
       workoutLogHTML += `

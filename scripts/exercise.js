@@ -130,6 +130,7 @@ function saveExerciseToCurrentWorkout() {
   const selectedExerciseName = localStorage.getItem('selectedExerciseName');
   const selectedExerciseId = localStorage.getItem('selectedExerciseId');
   const selectedMuscleGroup = localStorage.getItem('selectedMuscleGroup');
+  const exerciseDate = displayShortCurrentDate();
 
   let currentWorkout = JSON.parse(localStorage.getItem('currentWorkout')) || [];
 
@@ -139,6 +140,7 @@ function saveExerciseToCurrentWorkout() {
     existingExercise.sets = sets;
   } else {
     currentWorkout.push({
+      exerciseDate: exerciseDate,
       exerciseId: selectedExerciseId,
       muscleGroup: selectedMuscleGroup,
       exerciseName: selectedExerciseName,

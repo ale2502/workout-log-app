@@ -22,3 +22,19 @@ export function displayCurrentDate() {
   const dateString = `${weekDay}, ${month} ${day}${ordinalIndicator}, ${year}`;
   return dateString;
 }
+
+export function displayShortCurrentDate() {
+  const now = new Date();
+  let day = String(now.getDate());
+
+  if (day.length === 1) {
+    day = String(0 + day);
+  }
+
+  const month = String(now.getMonth() + 1);
+  const year = String(now.getFullYear()).slice(-2);
+  const shortDateString = `${day}/${month}/${year}`;
+  return shortDateString;
+}
+
+displayShortCurrentDate();

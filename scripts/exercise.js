@@ -1,4 +1,5 @@
 import { exercises } from "../data/exercise-list.js";
+import { displayShortCurrentDate } from "./date-utils.js";
 
 function buttonBackSpecificMuscleGroup() {
   const topButtonContainer = document.getElementById('js-specific-muscle-button-container');

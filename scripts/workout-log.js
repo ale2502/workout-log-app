@@ -21,7 +21,7 @@ function renderWorkout() {
         </span>
       </div>
       <div class="exercise-date">${exercise.exerciseDate}</div>
-    `;
+      `;
     exercise.sets.forEach((set, index) => {
       workoutLogHTML += `
         <div>Set ${index + 1}: ${set.weight}kg x ${set.reps} reps (RIR: ${set.rir})</div>

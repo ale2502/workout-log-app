@@ -31,8 +31,16 @@ export function displayShortCurrentDate() {
     day = String(0 + day);
   }
 
-  const month = String(now.getMonth() + 1);
+  const month = String(now.getMonth() + 1).padStart(2, '0');
   const year = String(now.getFullYear()).slice(-2);
   const shortDateString = `${day}/${month}/${year}`;
   return shortDateString;
+}
+
+export function getTodayKey() {
+  const now = new Date();
+  const yyyy = String(now.getFullYear);
+  const mm = String(now.getMonth() + 1).padStart(2, '0');
+  const dd = String(now.getDate()).padStart(2, '0');
+  return `${yyyy}-${mm}-${dd}`;
 }

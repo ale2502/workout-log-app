@@ -1,11 +1,14 @@
-import { displayCurrentDate } from "./date-utils.js";
+import { displayCurrentDate, getTodayKey } from "./date-utils.js";
 
 function renderWorkout() {
   let workoutLogHTMLWrap = '';
   
   const workoutLog = JSON.parse(localStorage.getItem('currentWorkout')) || [];
+  const todayKey = getTodayKey();
   
-  workoutLog.forEach((exercise) => {
+  workoutLog
+  .filter(ex => ex.dateKey === todayKey)
+  .forEach((exercise) => {
     let workoutLogHTML = '';
     workoutLogHTML += `
       <div class="sets-reps">
@@ -66,3 +69,8 @@ addNewExistingExerciseButton.addEventListener('click', () => {
 
 const currentDateContainer = document.getElementById('js-current-date');
 currentDateContainer.textContent = displayCurrentDate();
+
+const workoutsHistoryBtn = document.getElementById('js-workouts-history-button');
+workoutsHistoryBtn.addEventListener('click', () => {
+  window.location.href = '../workouts-history-page.html';
+});

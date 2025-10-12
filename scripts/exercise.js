@@ -1,5 +1,5 @@
 import { exercises } from "../data/exercise-list.js";
-import { displayShortCurrentDate } from "./date-utils.js";
+import { displayShortCurrentDate, getTodayKey } from "./date-utils.js";
 
 function buttonBackSpecificMuscleGroup() {
   const topButtonContainer = document.getElementById('js-specific-muscle-button-container');
@@ -131,6 +131,7 @@ function saveExerciseToCurrentWorkout() {
   const selectedExerciseId = localStorage.getItem('selectedExerciseId');
   const selectedMuscleGroup = localStorage.getItem('selectedMuscleGroup');
   const exerciseDate = displayShortCurrentDate();
+  const dateKey = getTodayKey();
 
   let currentWorkout = JSON.parse(localStorage.getItem('currentWorkout')) || [];
 
@@ -141,6 +142,7 @@ function saveExerciseToCurrentWorkout() {
   } else {
     currentWorkout.push({
       exerciseDate: exerciseDate,
+      dateKey: dateKey,
       exerciseId: selectedExerciseId,
       muscleGroup: selectedMuscleGroup,
       exerciseName: selectedExerciseName,
